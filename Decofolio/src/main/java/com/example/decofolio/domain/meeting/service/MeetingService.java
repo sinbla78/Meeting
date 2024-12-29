@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -139,4 +140,11 @@ public class MeetingService {
         currentUser.setParticipatedMeeting(meeting);
     }
 
+    @Transactional
+    public void updateMeetingImageUrl(Long meetingId, String imageUrl) {
+        Meeting meeting = meetingRepository.findById(meetingId)
+                .orElseThrow(() -> new EntityNotFoundException("해당 모임을 찾을 수 없습니다."));
+
+        meeting.setImageUrl(imageUrl);
+    }
 }

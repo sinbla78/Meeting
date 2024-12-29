@@ -1,4 +1,9 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://101.79.10.150:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
@@ -32,15 +37,25 @@ spring:
     host: localhost
     port: 6379
 
+  cloud:
+    aws:
+      credentials:
+        access-key: "ncp_iam_BPAMKRTv7SxDriwViICY"
+        secret-key: "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi"
+      stack:
+        auto: false
+      region:
+        static: ap-northeast-2
+      s3:
+        endpoint: https://kr.object.ncloudstorage.com
+        bucket: "meet"
+
+
 springdoc:
   swagger-ui:
     path: /api-test  # swagger-ui 접근 경로에 대한 별칭, 해당 주소로 접속해도 http://localhost:8080/swagger-ui/index.html로 리다이렉션 됨.
-
     groups-order: DESC # path, query, body, response 순으로 출력
-
     tags-sorter: alpha # 태그를 알파벳 순으로 정렬
-
     operations-sorter: method  # delete - get - patch - post - put 순으로 정렬, alpha를 사용하면 알파벳 순으로 정렬 가능
-
   paths-to-match:
     - /v1/** # swagger-ui에 표시할 api의 엔드포인트 패턴

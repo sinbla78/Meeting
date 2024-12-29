@@ -4,12 +4,14 @@ import com.example.decofolio.domain.meeting.controller.dto.request.MeetingReques
 import com.example.decofolio.domain.meeting.controller.dto.response.MeetingDetailResponse;
 import com.example.decofolio.domain.meeting.controller.dto.response.MeetingResponse;
 import com.example.decofolio.domain.meeting.service.MeetingService;
+import com.example.decofolio.domain.meeting.service.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.List;
 public class MeetingController {
 
     private final MeetingService meetingService;
+    private final S3Service s3Service;
 
     /**
      * 모임 제목 검색 API
@@ -67,6 +70,16 @@ public class MeetingController {
     public ResponseEntity<Void> joinMeeting(@PathVariable Long meetingId) {
         meetingService.joinMeeting(meetingId);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/upload-image")
+    public ResponseEntity<String> uploadImage(
+            @PathVariable Long id,
+            @RequestPart("file") MultipartFile file) {
+
+        String imageUrl = s3Service.uploadFile(file);
+        meetingService.updateMeetingImageUrl(id, imageUrl);
+        return ResponseEntity.ok(imageUrl);
     }
 
 }

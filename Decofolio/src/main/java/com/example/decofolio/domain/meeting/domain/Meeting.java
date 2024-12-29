@@ -116,4 +116,10 @@ public class Meeting {
         participants.add(user);
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+
 }
