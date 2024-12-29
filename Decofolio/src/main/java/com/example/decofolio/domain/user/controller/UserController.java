@@ -3,10 +3,13 @@ package com.example.decofolio.domain.user.controller;
 import com.example.decofolio.domain.user.controller.dto.request.SignUpRequest;
 import com.example.decofolio.domain.user.controller.dto.request.StateChangeRequest;
 import com.example.decofolio.domain.user.controller.dto.request.UpdatePasswordRequest;
+import com.example.decofolio.domain.user.controller.dto.response.UserProfileResponse;
 import com.example.decofolio.domain.user.domain.State;
+import com.example.decofolio.domain.user.domain.User;
 import com.example.decofolio.domain.user.service.SignUpService;
 import com.example.decofolio.domain.user.service.UpdatePasswordService;
 import com.example.decofolio.domain.user.service.UpdateStateService;
+import com.example.decofolio.domain.user.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +22,20 @@ import javax.validation.Valid;
 public class UserController {
 
     private final SignUpService signUpService;
+    private final UserDetailService userDetailService;
     private final UpdatePasswordService updatePasswordService;
     private final UpdateStateService updateStateService;
+
+    /**
+     * 사용자 프로필 정보 조회
+     * @param userId 사용자 ID
+     * @return 사용자 정보와 참여한 모임, 작성한 모임
+     */
+    @GetMapping("/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserProfileResponse getUserProfile(@PathVariable Long userId) {
+        return userDetailService.getUserProfile(userId);
+    }
 
     /**
      * 회원 가입 처리

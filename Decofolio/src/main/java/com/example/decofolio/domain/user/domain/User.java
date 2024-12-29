@@ -55,14 +55,6 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Meeting createdMeeting;
-
-    public void setParticipatedMeeting(Meeting meeting) {
-        this.participatedMeeting = meeting;
-    }
-
-    public void setCreatedMeeting(Meeting meeting) {
-        this.createdMeeting = meeting;
-    }
     @Builder
     private User(String accountId, String password, String name, Integer age, String location, State state) {
         this.accountId = accountId;
@@ -72,14 +64,18 @@ public class User {
         this.location = location;
         this.state = state;
     }
+    public void setParticipatedMeeting(Meeting meeting) {
+        this.participatedMeeting = meeting;
+    }
+    public void setCreatedMeeting(Meeting meeting) {
+        this.createdMeeting = meeting;
+    }
     public void updatePassword(String password) {
         this.password = password;
     }
-
     public void updateLastLoginTime() {
         this.lastLoginTime = LocalDateTime.now();
     }
-
     public void changeState(State newState) {
         this.state = newState;
     }
