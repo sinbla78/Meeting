@@ -54,8 +54,8 @@ public class MeetingController {
      *
      * @param meetingRequest 모임 생성 정보
      */
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void createMeeting(@RequestBody @Valid MeetingRequest meetingRequest) {
         meetingService.execute(meetingRequest);
     }
@@ -72,11 +72,11 @@ public class MeetingController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/upload-image")
+    @PostMapping("/{id}/upload")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> uploadImage(
             @PathVariable Long id,
             @RequestPart("file") MultipartFile file) {
-
         String imageUrl = s3Service.uploadFile(file);
         meetingService.updateMeetingImageUrl(id, imageUrl);
         return ResponseEntity.ok(imageUrl);

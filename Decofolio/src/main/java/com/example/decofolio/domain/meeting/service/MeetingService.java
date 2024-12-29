@@ -143,7 +143,7 @@ public class MeetingService {
     @Transactional
     public void updateMeetingImageUrl(Long meetingId, String imageUrl) {
         Meeting meeting = meetingRepository.findById(meetingId)
-                .orElseThrow(() -> new EntityNotFoundException("해당 모임을 찾을 수 없습니다."));
+                .orElseThrow(() -> MeetingNotFoundException.EXCEPTION);
 
         meeting.setImageUrl(imageUrl);
     }
