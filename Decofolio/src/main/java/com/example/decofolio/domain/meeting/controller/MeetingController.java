@@ -3,6 +3,7 @@ package com.example.decofolio.domain.meeting.controller;
 import com.example.decofolio.domain.meeting.controller.dto.request.MeetingRequest;
 import com.example.decofolio.domain.meeting.controller.dto.response.MeetingDetailResponse;
 import com.example.decofolio.domain.meeting.controller.dto.response.MeetingResponse;
+import com.example.decofolio.domain.meeting.domain.Meeting;
 import com.example.decofolio.domain.meeting.service.MeetingService;
 import com.example.decofolio.domain.meeting.service.S3Service;
 import lombok.RequiredArgsConstructor;
@@ -50,14 +51,24 @@ public class MeetingController {
     }
 
     /**
-     * 모임 생성 API
+     * 모임 생성 및 이미지 업로드
      *
-     * @param meetingRequest 모임 생성 정보
+     * @param meetingRequest 모임 생성 요청 정보
+     * @param file           모임 이미지 (optional)
+     * @return 생성된 모임 정보
      */
-    @PostMapping
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void createMeeting(@RequestBody @Valid MeetingRequest meetingRequest) {
-        meetingService.execute(meetingRequest);
+    public ResponseEntity<MeetingResponse> createMeeting(
+            @RequestPart("meetingRequest") @Valid MeetingRequest meetingRequest,
+            @RequestPart(value = "file", required = false) MultipartFile file) {
+
+        // 모임 생성 및 이미지 업로드
+        Meeting meeting = meetingService.execute(meetingRequest, file);
+
+        // 생성된 모임을 응답으로 반환
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(MeetingResponse.fromEntity(meeting));  // MeetingResponse 객체로 변환 후 반환
     }
 
     /**
@@ -70,16 +81,6 @@ public class MeetingController {
     public ResponseEntity<Void> joinMeeting(@PathVariable Long meetingId) {
         meetingService.joinMeeting(meetingId);
         return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{id}/upload")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> uploadImage(
-            @PathVariable Long id,
-            @RequestPart("file") MultipartFile file) {
-        String imageUrl = s3Service.uploadFile(file);
-        meetingService.updateMeetingImageUrl(id, imageUrl);
-        return ResponseEntity.ok(imageUrl);
     }
 
 }

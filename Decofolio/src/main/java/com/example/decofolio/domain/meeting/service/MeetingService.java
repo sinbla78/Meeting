@@ -14,9 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +25,7 @@ public class MeetingService {
 
     private final MeetingRepository meetingRepository;  // 모임 데이터를 저장할 repository
     private final UserFacade userFacade;  // 현재 사용자의 정보를 가져오는 facade
+    private final S3Service s3Service;
 
     /**
      * 모임 제목으로 검색하는 메서드
@@ -42,6 +42,11 @@ public class MeetingService {
         return meetings.map(MeetingResponse::fromEntity);
     }
 
+    /** 모임 아이디로 조회 메서드
+     *
+     * @param meetingId 조회할 모임 제목
+     * @return 조회된 모임 목록
+     */
     @Transactional(readOnly = true)
     public MeetingDetailResponse getMeetingDetail(Long meetingId) {
         // 모임 엔티티 조회
@@ -77,15 +82,15 @@ public class MeetingService {
                 .build();
     }
 
-
     /**
-     * 모임을 생성하는 메서드
+     * 모임 생성 및 이미지 업로드
      *
-     * @param meetingRequest 모임 생성에 필요한 정보가 담긴 DTO
-     * @return 생성된 모임 객체
+     * @param meetingRequest 모임 생성 요청 정보
+     * @param file 업로드된 이미지 파일 (optional)
+     * @return 생성된 모임
      */
     @Transactional
-    public Meeting execute(MeetingRequest meetingRequest) {
+    public Meeting execute(MeetingRequest meetingRequest, MultipartFile file) {
         // 현재 로그인한 사용자 정보 가져오기
         User user = userFacade.getCurrentUser();
 
@@ -94,11 +99,18 @@ public class MeetingService {
             throw UserAlreadyParticipatingException.EXCEPTION;
         }
 
+        // 이미지 업로드 처리 (파일이 있을 경우)
+        String imageUrl = null;
+        if (file != null && !file.isEmpty()) {
+            // S3에 파일 업로드 후 URL 반환
+            imageUrl = s3Service.uploadFile(file);
+        }
+
         // 모임 객체 생성
         Meeting meeting = Meeting.builder()
                 .title(meetingRequest.getTitle())  // 모임 제목
                 .text(meetingRequest.getText())  // 모임 설명
-                .imageUrl(meetingRequest.getImageUrl())  // 모임 이미지 URL
+                .imageUrl(imageUrl)  // 모임 이미지 URL (null 가능)
                 .address(meetingRequest.getAddress())  // 모임 주소
                 .user(user)  // 모임을 생성한 사용자
                 .build();
@@ -138,13 +150,5 @@ public class MeetingService {
 
         // 사용자에게 참가한 모임 설정
         currentUser.setParticipatedMeeting(meeting);
-    }
-
-    @Transactional
-    public void updateMeetingImageUrl(Long meetingId, String imageUrl) {
-        Meeting meeting = meetingRepository.findById(meetingId)
-                .orElseThrow(() -> MeetingNotFoundException.EXCEPTION);
-
-        meeting.setImageUrl(imageUrl);
     }
 }

@@ -1,71 +1,55 @@
-server:
-  shutdown: graceful
-
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${JDBC_URL:jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
-    username: ${DB_USER:root}
-    password: ${DB_PWD:yhm75040611?}
-    hikari:
-      max-lifetime: 600000
+    url: jdbc:mysql://101.79.10.150:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: yhm75040611?
 
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-    open-in-view: false
-
-  servlet:
-    multipart:
-      max-file-size: ${MAX_FILE_SIZE:10MB}
-      max-request-size: ${MAX_REQUEST_SIZE:10MB}
-
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:}
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
 
-  lifecycle:
-    timeout-per-shutdown-phase: 20s
+  jwt:
+    header: Authorization
+    secret-key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwidHlwZSI6IkFjY2VzcyIsImV4cCI6MTczNTI1NjAwMH0.U6NBf9s3okOvuVZolUjGmuQJlmtc81I7Xcj7z3JQedo
+    access-exp: 2592000000   # 30일
+    refresh-exp: 2592000000   # 30일
+    prefix: Bearer
 
-jwt:
-  secret-key: ${JWT_SECRET_KEY:souso}
-  access-exp: ${JWT_ACCESS_EXP:2592000000} # 30일
-  refresh-exp: ${JWT_REFRESH_EXP:2592000000} # 30일
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
-coolsms:
-  key: ${COOLSMS_API_KEY}
-  secret: ${COOLSMS_SECRET_KEY}
-  phone-number: ${COOLSMS_PHONE_NUMBER}
+  redis:
+    host: localhost
+    port: 6379
 
-cloud:
-  aws:
-    credentials:
-      accessKey: ${AWS_ACCESS_KEY}
-      secretKey: ${AWS_SECRET_KEY}
-    s3:
-      bucket: ${S3_BUCKET:meet}
-      endpoint: ${S3_ENDPOINT:https://kr.object.ncloudstorage.com}
-    region:
-      static: ${AWS_REGION:ap-northeast-2}
-    stack:
-      auto: false
+  cloud:
+    aws:
+      credentials:
+        access-key: "ncp_iam_BPAMKRTv7SxDriwViICY"
+        secret-key: "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi"
+      stack:
+        auto: false
+      region:
+        static: ap-northeast-2
+      s3:
+        endpoint: https://kr.object.ncloudstorage.com
+        bucket: "meet"
 
-logging:
-  level:
-    com:
-      amazonaws:
-        util:
-          EC2MetadataUtils: error
 
 springdoc:
   swagger-ui:
