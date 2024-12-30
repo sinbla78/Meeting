@@ -30,12 +30,6 @@ public class MeetingRequest {
     private String text;
 
     /**
-     * 모임 이미지 URL (선택 항목)
-     */
-    @JsonProperty("imageUrl")
-    private String imageUrl;
-
-    /**
      * 모임 주소 (필수 항목)
      * 주소는 3자 이상 100자 이하로 설정
      */
