@@ -27,7 +27,8 @@ public class S3Service {
             metadata.setContentLength(file.getSize());
 
             // 파일을 S3에 업로드
-            amazonS3.putObject(bucketName, fileName, file.getInputStream(), metadata);
+            amazonS3.putObject(new PutObjectRequest(bucketName, fileName, file.getInputStream(), metadata)
+                    .withCannedAcl(CannedAccessControlList.PublicRead));
 
             // 파일의 URL 반환
             return amazonS3.getUrl(bucketName, fileName).toString();
