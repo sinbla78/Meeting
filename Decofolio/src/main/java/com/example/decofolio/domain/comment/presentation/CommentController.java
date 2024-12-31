@@ -22,8 +22,8 @@ public class CommentController {
 
     //댓글 작성
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/{meeting-id}")
-    public CreateCommentResponse createComment(@PathVariable("meeting-id") Long meetingId, @RequestBody @Valid CreateCommentRequest request) {
+    @PostMapping("/{meetingId}")
+    public CreateCommentResponse createComment(@PathVariable("meetingId") Long meetingId, @RequestBody @Valid CreateCommentRequest request) {
         return createCommentService.execute(meetingId, request);
     }
 
