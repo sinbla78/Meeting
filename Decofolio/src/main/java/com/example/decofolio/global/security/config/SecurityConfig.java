@@ -37,12 +37,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
 
+                //user
                 .antMatchers(HttpMethod.POST, "/v1/user").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/v1/user/password").authenticated()
+                .antMatchers(HttpMethod.PATCH, "/v1/user/{userId}/state").authenticated()
+                .antMatchers(HttpMethod.GET, "/v1/user/{userId}").authenticated()
+                //auth
                 .antMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/v1/auth/token").permitAll()
+                //meeting
+                .antMatchers(HttpMethod.POST, "/v1/meeting/password").authenticated()
+                .antMatchers(HttpMethod.GET, "/v1/meeting/{meetingId}").authenticated()
+                .antMatchers(HttpMethod.POST, "/v1/meeting/{meetingId}/join").authenticated()
+                .antMatchers(HttpMethod.GET, "/v1/meeting/search").authenticated()
+                //comment
+                .antMatchers(HttpMethod.GET, "/v1/comments/{meetingId}").authenticated()
+                .antMatchers(HttpMethod.POST, "/v1/comments/{meetingId}").authenticated()
+                //swagger
                 .antMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**", "/webjars/**").permitAll()
 
-                .anyRequest().authenticated()
+                .anyRequest().denyAll()
 
                 .and()
                 .apply(new FilterConfig(jwtTokenProvider, objectMapper));
