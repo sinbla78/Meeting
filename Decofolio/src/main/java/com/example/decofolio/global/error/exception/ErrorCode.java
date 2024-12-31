@@ -21,7 +21,7 @@ public enum ErrorCode {
     FEED_NOT_FOUND(204, "Feed Not Found"),
     PROJECT_NOT_FOUND(204, "Project Not Found"),
     LINK_NOT_FOUND(204, "Link Not Found"),
-    COMMENT_FOT_FOUND(204, "COMMENT_FOT_FOUND"),
+    COMMENT_NOT_FOUND(204, "COMMENT_NOT_FOUND"),
     MEETING_NOT_FOUND(204, "Meeting Not Found"),
     FEED_VIEW_COUNT_NOT_FOUND(204, "Feed View Count Not Found"),
 
