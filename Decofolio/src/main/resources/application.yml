@@ -6,9 +6,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://101.79.10.150:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: yhm75040611?
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
 
   jpa:
     database: mysql
@@ -24,7 +24,7 @@ spring:
 
   jwt:
     header: Authorization
-    secret-key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwidHlwZSI6IkFjY2VzcyIsImV4cCI6MTczNTI1NjAwMH0.U6NBf9s3okOvuVZolUjGmuQJlmtc81I7Xcj7z3JQedo
+    secret-key: ${JWT_SECRET_KEY}
     access-exp: 2592000000   # 30일
     refresh-exp: 2592000000   # 30일
     prefix: Bearer
@@ -34,28 +34,25 @@ spring:
       matching-strategy: ant_path_matcher
 
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
 
   cloud:
     aws:
       credentials:
-        access-key: "ncp_iam_BPAMKRTv7SxDriwViICY"
-        secret-key: "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi"
-      stack:
-        auto: false
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
       region:
-        static: ap-northeast-2
+        static: ${AWS_REGION}
       s3:
-        endpoint: https://kr.object.ncloudstorage.com
-        bucket: "meet"
-
+        endpoint: ${AWS_S3_ENDPOINT}
+        bucket: ${AWS_S3_BUCKET}
 
 springdoc:
   swagger-ui:
-    path: /api-test  # swagger-ui 접근 경로에 대한 별칭, 해당 주소로 접속해도 http://localhost:8080/swagger-ui/index.html로 리다이렉션 됨.
-    groups-order: DESC # path, query, body, response 순으로 출력
-    tags-sorter: alpha # 태그를 알파벳 순으로 정렬
-    operations-sorter: method  # delete - get - patch - post - put 순으로 정렬, alpha를 사용하면 알파벳 순으로 정렬 가능
+    path: /api-test
+    groups-order: DESC
+    tags-sorter: alpha
+    operations-sorter: method
   paths-to-match:
-    - /v1/** # swagger-ui에 표시할 api의 엔드포인트 패턴
+    - /v1/**
