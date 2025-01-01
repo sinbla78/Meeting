@@ -37,8 +37,8 @@ public class SwaggerConfig {
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("sou-so")
-                .description("지역 기반 커뮤니티 서비스 소소의 API 입니다.")
+                .title("new_year")
+                .description("모임 기반 커뮤니티 서비스 new_year의 API 입니다.")
                 .build();
     }
 
