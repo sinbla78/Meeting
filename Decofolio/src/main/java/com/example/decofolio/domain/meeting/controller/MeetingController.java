@@ -6,6 +6,7 @@ import com.example.decofolio.domain.meeting.controller.dto.response.MeetingRespo
 import com.example.decofolio.domain.meeting.domain.Meeting;
 import com.example.decofolio.domain.meeting.service.MeetingService;
 import com.example.decofolio.domain.meeting.service.S3Service;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,8 @@ public class MeetingController {
      * @param title 검색할 모임 제목 (선택)
      * @return 검색된 모임 목록
      */
+    @ApiOperation(value = "모임 검색(제목)")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
     public Page<MeetingResponse> searchMeetings(
             @RequestParam String title,
@@ -44,6 +47,8 @@ public class MeetingController {
      * @param meetingId 모임 ID
      * @return 모임 상세 정보
      */
+    @ApiOperation(value = "모임 상세 조회")
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{meetingId}")
     public ResponseEntity<MeetingDetailResponse> getMeetingDetail(@PathVariable Long meetingId) {
         MeetingDetailResponse response = meetingService.getMeetingDetail(meetingId);
@@ -57,8 +62,9 @@ public class MeetingController {
      * @param file           모임 이미지 (optional)
      * @return 생성된 모임 정보
      */
-    @PostMapping()
+    @ApiOperation("모임 생성")
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
     public ResponseEntity<MeetingResponse> createMeeting(
             @RequestPart("meetingRequest") @Valid MeetingRequest meetingRequest,
             @RequestPart(value = "file", required = false) MultipartFile file) {
@@ -77,6 +83,8 @@ public class MeetingController {
      * @param meetingId 참가하려는 모임의 ID
      * @return 참가 성공 응답
      */
+    @ApiOperation("모임 참가")
+    @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{meetingId}/join")
     public ResponseEntity<Void> joinMeeting(@PathVariable Long meetingId) {
         meetingService.joinMeeting(meetingId);
