@@ -7,8 +7,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://101.79.10.150:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: ${DB_USERNAME}  # 환경 변수로 대체
-    password: ${DB_PASSWORD}  # 환경 변수로 대체
+    username: root
+    password: yhm75040611?
 
   jpa:
     database: mysql
@@ -24,7 +24,7 @@ spring:
 
   jwt:
     header: Authorization
-    secret-key: ${JWT_SECRET_KEY}  # 환경 변수로 대체
+    secret-key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwidHlwZSI6IkFjY2VzcyIsImV4cCI6MTczNTI1NjAwMH0.U6NBf9s3okOvuVZolUjGmuQJlmtc81I7Xcj7z3JQedo
     access-exp: 2592000000   # 30일
     refresh-exp: 2592000000   # 30일
     prefix: Bearer
@@ -40,8 +40,8 @@ spring:
   cloud:
     aws:
       credentials:
-        access-key: ${AWS_ACCESS_KEY}  # 환경 변수로 대체
-        secret-key: ${AWS_SECRET_KEY}  # 환경 변수로 대체
+        access-key: "ncp_iam_BPAMKRTv7SxDriwViICY"
+        secret-key: "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi"
       stack:
         auto: false
       region:
@@ -62,6 +62,27 @@ management:
       show-details: always  # 헬스 체크 상세 정보를 항상 표시
 
 
+cloud:
+  aws:
+    credentials:
+      access-key: ncp_iam_BPAMKRTv7SxDriwViICY
+      secret-key: ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi
+    region:
+      static: ap-northeast-2
+    ncp:
+      endpoint: https://kr.object.ncloudstorage.com
+    s3:
+      bucket: meet
 
-
+logging:
+  level:
+    root: INFO
+    org.springframework: ERROR
+  file:
+    name: logs/error.log
+    max-size: 10MB
+    total-size-cap: 100MB
+    max-history: 5
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 

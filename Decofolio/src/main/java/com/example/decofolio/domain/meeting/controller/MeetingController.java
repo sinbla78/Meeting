@@ -7,11 +7,16 @@ import com.example.decofolio.domain.meeting.domain.Meeting;
 import com.example.decofolio.domain.meeting.service.MeetingService;
 import com.example.decofolio.domain.meeting.service.S3Service;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,19 +69,17 @@ public class MeetingController {
      * @param file           모임 이미지 (optional)
      * @return 생성된 모임 정보
      */
-    @Operation(summary = "모임 생성(이미지 포함)", description = "create")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping()
+    @Operation(summary = "모임 생성 (이미지 포함)", description = "JSON 데이터와 이미지를 함께 업로드합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "모임 생성 성공"),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청")
+    })
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MeetingResponse> createMeeting(
-            @RequestPart("meetingRequest") @Valid MeetingRequest meetingRequest,
-            @RequestPart(value = "file", required = false) MultipartFile file) {
-
-        // 모임 생성 및 이미지 업로드
+            @RequestPart("meetingRequest") @Parameter(description = "모임 정보(JSON 형식)", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) @Valid MeetingRequest meetingRequest,
+            @RequestPart(value = "file", required = false) @Parameter(description = "업로드할 파일") MultipartFile file) {
         Meeting meeting = meetingService.execute(meetingRequest, file);
-
-        // 생성된 모임을 응답으로 반환
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(MeetingResponse.fromEntity(meeting));  // MeetingResponse 객체로 변환 후 반환
+        return ResponseEntity.status(HttpStatus.CREATED).body(MeetingResponse.fromEntity(meeting));
     }
 
     /**

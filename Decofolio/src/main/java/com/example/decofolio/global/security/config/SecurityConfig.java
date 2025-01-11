@@ -46,10 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/v1/auth/token").permitAll()
                 //meeting
-                .antMatchers(HttpMethod.POST, "/v1/meeting/password").authenticated()
+                .antMatchers(HttpMethod.POST, "/v1/meeting").authenticated()
                 .antMatchers(HttpMethod.GET, "/v1/meeting/{meetingId}").authenticated()
                 .antMatchers(HttpMethod.POST, "/v1/meeting/{meetingId}/join").authenticated()
                 .antMatchers(HttpMethod.GET, "/v1/meeting/search").authenticated()
+
                 //comment
                 .antMatchers(HttpMethod.GET, "/v1/comments/{meetingId}").authenticated()
                 .antMatchers(HttpMethod.POST, "/v1/comments/{meetingId}").authenticated()

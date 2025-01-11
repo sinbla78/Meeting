@@ -1,0 +1,96 @@
+2025-01-11 19:30:42.290  INFO 80010 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 80010 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 19:30:42.293  INFO 80010 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 19:30:43.388  INFO 80010 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 19:30:43.388  INFO 80010 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 19:30:43.450  INFO 80010 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 19:30:43.584  INFO 80010 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 19:30:43.607  INFO 80010 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 19:30:43.676  INFO 80010 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 19:30:43.717  INFO 80010 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 19:30:44.316  INFO 80010 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 19:30:44.324  INFO 80010 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 19:30:45.456  INFO 80010 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 19:30:46.530  INFO 80010 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 4.503 seconds (JVM running for 4.766)
+2025-01-11 19:30:46.699  INFO 80010 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-11 19:32:46.001  INFO 80010 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-11 19:32:46.789  INFO 80010 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-11 19:32:50.016  INFO 80251 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 80251 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 19:32:50.017  INFO 80251 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 19:32:50.965  INFO 80251 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 19:32:50.966  INFO 80251 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 19:32:51.020  INFO 80251 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 19:32:51.146  INFO 80251 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 19:32:51.168  INFO 80251 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 19:32:51.240  INFO 80251 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 19:32:51.281  INFO 80251 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 19:32:51.946  INFO 80251 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 19:32:51.954  INFO 80251 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 19:32:53.236  INFO 80251 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 19:32:54.300  INFO 80251 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 4.464 seconds (JVM running for 4.691)
+2025-01-11 19:32:54.464  INFO 80251 --- [RMI TCP Connection(7)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-11 19:33:40.092  INFO 80251 --- [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 180 ms
+2025-01-11 19:46:33.480  INFO 80251 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-11 19:46:34.286  INFO 80251 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-11 19:46:37.633  INFO 81604 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 81604 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 19:46:37.634  INFO 81604 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 19:46:38.535  INFO 81604 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 19:46:38.535  INFO 81604 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 19:46:38.591  INFO 81604 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 19:46:38.720  INFO 81604 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 19:46:38.741  INFO 81604 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 19:46:38.810  INFO 81604 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 19:46:38.850  INFO 81604 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 19:46:39.486  INFO 81604 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 19:46:39.494  INFO 81604 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 19:46:40.776  INFO 81604 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 19:46:41.732  INFO 81604 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 4.275 seconds (JVM running for 4.504)
+2025-01-11 19:46:41.942  INFO 81604 --- [RMI TCP Connection(5)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-11 19:48:31.886  INFO 81604 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-11 19:48:32.385  INFO 81604 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-11 19:48:35.352  INFO 81787 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 81787 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 19:48:35.354  INFO 81787 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 19:48:36.277  INFO 81787 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 19:48:36.277  INFO 81787 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 19:48:36.331  INFO 81787 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 19:48:36.460  INFO 81787 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 19:48:36.502  INFO 81787 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 19:48:36.583  INFO 81787 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 19:48:36.622  INFO 81787 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 19:48:37.276  INFO 81787 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 19:48:37.284  INFO 81787 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 19:48:38.415  INFO 81787 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 19:48:39.441  INFO 81787 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 4.299 seconds (JVM running for 4.529)
+2025-01-11 19:48:39.789  INFO 81787 --- [RMI TCP Connection(3)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-11 19:49:57.968  INFO 81787 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-11 19:49:58.711  INFO 81787 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-11 19:50:01.593  INFO 81961 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 81961 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 19:50:01.594  INFO 81961 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 19:50:02.514  INFO 81961 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 19:50:02.514  INFO 81961 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 19:50:02.565  INFO 81961 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 19:50:02.732  INFO 81961 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 19:50:02.756  INFO 81961 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 19:50:02.832  INFO 81961 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 19:50:02.872  INFO 81961 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 19:50:03.497  INFO 81961 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 19:50:03.506  INFO 81961 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 19:50:04.688  INFO 81961 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 19:50:05.648  INFO 81961 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 4.242 seconds (JVM running for 4.468)
+2025-01-11 19:50:06.059  INFO 81961 --- [RMI TCP Connection(6)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-11 19:50:18.522  INFO 81961 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 178 ms
+2025-01-11 20:03:06.814  INFO 81961 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-11 20:03:07.185  INFO 81961 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-11 20:03:10.711  INFO 83254 --- [main] c.e.decofolio.DecofolioApplication       : Starting DecofolioApplication using Java 17.0.8 on sinbla78.local with PID 83254 (/Users/yanghuibeom/Desktop/Meeting/Decofolio/build/classes/java/main started by yanghuibeom in /Users/yanghuibeom/Desktop/Meeting/Decofolio)
+2025-01-11 20:03:10.712  INFO 83254 --- [main] c.e.decofolio.DecofolioApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-01-11 20:03:11.603  INFO 83254 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-11 20:03:11.603  INFO 83254 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.65]
+2025-01-11 20:03:11.658  INFO 83254 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-11 20:03:11.788  INFO 83254 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-11 20:03:11.810  INFO 83254 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.10.Final
+2025-01-11 20:03:11.877  INFO 83254 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-01-11 20:03:11.914  INFO 83254 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-11 20:03:12.345  INFO 83254 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-11 20:03:12.356  INFO 83254 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2025-01-11 20:03:13.249  INFO 83254 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-11 20:03:14.281  INFO 83254 --- [main] c.e.decofolio.DecofolioApplication       : Started DecofolioApplication in 3.744 seconds (JVM running for 3.971)
+2025-01-11 20:03:14.691  INFO 83254 --- [RMI TCP Connection(4)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
