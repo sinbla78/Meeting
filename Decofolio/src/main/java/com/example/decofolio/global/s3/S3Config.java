@@ -10,23 +10,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class S3Config {
 
-    private final S3Properties s3Properties;
-
-    public S3Config(S3Properties s3Properties) {
-        this.s3Properties = s3Properties;
-    }
+    private final String accessKey = "ncp_iam_BPAMKRTv7SxDriwViICY";
+    private final String secretKey = "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi";
+    private final String region = "ap-northeast-2";
+    private final String endpoint = "https://kr.object.ncloudstorage.com";
 
     @Bean
     public AmazonS3 amazonS3() {
-        BasicAWSCredentials credentials = new BasicAWSCredentials(
-                s3Properties.getAccessKey(), s3Properties.getSecretKey()
-        );
+        BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
         return AmazonS3ClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
                 .withEndpointConfiguration(
-                        new AmazonS3ClientBuilder.EndpointConfiguration(
-                                s3Properties.getEndpoint(), s3Properties.getRegion()
-                        )
+                        new AmazonS3ClientBuilder.EndpointConfiguration(endpoint, region)
                 )
                 .build();
     }

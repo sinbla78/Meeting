@@ -6,9 +6,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://101.79.10.150:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: yhm75040611?
 
   jpa:
     database: mysql
@@ -24,7 +24,7 @@ spring:
 
   jwt:
     header: Authorization
-    secret-key: ${JWT_SECRET_KEY}
+    secret-key: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwidHlwZSI6IkFjY2VzcyIsImV4cCI6MTczNTI1NjAwMH0.U6NBf9s3okOvuVZolUjGmuQJlmtc81I7Xcj7z3JQedo
     access-exp: 2592000000   # 30일
     refresh-exp: 2592000000   # 30일
     prefix: Bearer
@@ -34,25 +34,33 @@ spring:
       matching-strategy: ant_path_matcher
 
   redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
+    host: localhost
+    port: 6379
 
   cloud:
     aws:
       credentials:
-        access-key: ${AWS_ACCESS_KEY}
-        secret-key: ${AWS_SECRET_KEY}
+        access-key: "ncp_iam_BPAMKRTv7SxDriwViICY"
+        secret-key: "ncp_iam_BPKMKR42wzQDcpP2os3KJiX4gxN2f9E8qi"
+      stack:
+        auto: false
       region:
-        static: ${AWS_REGION}
+        static: ap-northeast-2
       s3:
-        endpoint: ${AWS_S3_ENDPOINT}
-        bucket: ${AWS_S3_BUCKET}
+        endpoint: https://kr.object.ncloudstorage.com
+        bucket: "meet"
 
-springdoc:
-  swagger-ui:
-    path: /api-test
-    groups-order: DESC
-    tags-sorter: alpha
-    operations-sorter: method
-  paths-to-match:
-    - /v1/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info  # health와 info 엔드포인트를 노출
+  health:
+    enabled: true
+  endpoint:
+    health:
+      show-details: always  # 헬스 체크 상세 정보를 항상 표시
+
+
+
+

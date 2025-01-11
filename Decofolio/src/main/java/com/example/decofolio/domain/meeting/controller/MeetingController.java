@@ -6,6 +6,8 @@ import com.example.decofolio.domain.meeting.controller.dto.response.MeetingRespo
 import com.example.decofolio.domain.meeting.domain.Meeting;
 import com.example.decofolio.domain.meeting.service.MeetingService;
 import com.example.decofolio.domain.meeting.service.S3Service;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/v1/meeting")
 @RestController
+@Tag(name = "Meeting", description = "모임")
 public class MeetingController {
 
     private final MeetingService meetingService;
@@ -31,6 +34,7 @@ public class MeetingController {
      * @param title 검색할 모임 제목 (선택)
      * @return 검색된 모임 목록
      */
+    @Operation(summary = "모임 검색(제목 기반)", description = "receive meetings by title")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
     public Page<MeetingResponse> searchMeetings(
@@ -45,6 +49,7 @@ public class MeetingController {
      * @param meetingId 모임 ID
      * @return 모임 상세 정보
      */
+    @Operation(summary = "모임 조회", description = "receive meetings")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{meetingId}")
     public ResponseEntity<MeetingDetailResponse> getMeetingDetail(@PathVariable Long meetingId) {
@@ -59,6 +64,7 @@ public class MeetingController {
      * @param file           모임 이미지 (optional)
      * @return 생성된 모임 정보
      */
+    @Operation(summary = "모임 생성(이미지 포함)", description = "create")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public ResponseEntity<MeetingResponse> createMeeting(
@@ -79,6 +85,7 @@ public class MeetingController {
      * @param meetingId 참가하려는 모임의 ID
      * @return 참가 성공 응답
      */
+    @Operation(summary = "모임 참가", description = "join meeting")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{meetingId}/join")
     public ResponseEntity<Void> joinMeeting(@PathVariable Long meetingId) {

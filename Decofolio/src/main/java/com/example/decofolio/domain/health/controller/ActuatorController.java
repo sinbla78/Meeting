@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActuatorController {
 
     // health 엔드포인트를 Swagger UI에 노출
-    @Operation(summary = "Get health status", description = "Check the health of the application")
+    @Operation(summary = "서버 상태 체크", description = "Check the health of the application")
     @GetMapping("/health")
     public Health health() {
         return Health.up().build();  // 간단한 건강 상태 반환

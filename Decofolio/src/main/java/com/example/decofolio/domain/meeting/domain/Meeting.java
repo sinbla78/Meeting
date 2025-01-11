@@ -1,6 +1,7 @@
 package com.example.decofolio.domain.meeting.domain;
 
 import com.example.decofolio.domain.user.domain.User;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

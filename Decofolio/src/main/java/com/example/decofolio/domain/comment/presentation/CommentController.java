@@ -5,6 +5,8 @@ import com.example.decofolio.domain.comment.presentation.dto.request.CreateComme
 import com.example.decofolio.domain.comment.presentation.dto.response.CommentResponse;
 import com.example.decofolio.domain.comment.presentation.dto.response.CreateCommentResponse;
 import com.example.decofolio.domain.comment.service.CreateCommentService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequiredArgsConstructor // final 필드에 대해 생성자를 자동 생성
-@RequestMapping("/v1/comments") // 공통 URL 경로를 지정
-@RestController // RESTful 컨트롤러로 설정
+@RequiredArgsConstructor
+@RequestMapping("/v1/comments")
+@RestController
+@Tag(name = "Comment", description = "회고")
 public class CommentController {
 
-    // 댓글 생성 관련 서비스
     private final CreateCommentService createCommentService;
 
     /**
-     * 댓글 작성 API
+     * - 댓글 작성 API
      * - HTTP POST 요청
      * - 특정 모임(meetingId)에 댓글을 작성
      *
@@ -30,6 +32,7 @@ public class CommentController {
      * @param request   댓글 작성 요청 데이터
      * @return          생성된 댓글에 대한 응답 데이터
      */
+    @Operation(summary = "회고 작성", description = "create comment")
     @ResponseStatus(HttpStatus.CREATED) // HTTP 201 상태 반환
     @PostMapping("/{meetingId}") // /v1/comments/{meetingId}로 요청 시 매핑
     public CreateCommentResponse createComment(
@@ -40,13 +43,14 @@ public class CommentController {
     }
 
     /**
-     * 특정 모임의 댓글 조회 API
+     * - 특정 모임의 댓글 조회 API
      * - HTTP GET 요청
      *
      * @param meetingId 댓글을 조회할 모임의 ID
      * @return          댓글 리스트를 포함한 응답 객체
      */
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "회고 불러오기", description = "get comment")
     @GetMapping("/{meetingId}") // /v1/comments/{meetingId}로 요청 시 매핑
     public ResponseEntity<List<CommentResponse>> getComments(
             @PathVariable Long meetingId // URL 경로에서 meetingId 추출
