@@ -86,3 +86,12 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
+springdoc:
+  swagger-ui:
+    operations-sorter: method # HTTP 메소드 순으로 정렬
+    tags-sorter: alpha # 태그는 알파벳 순으로 정렬
+    doc-expansion: none
+    display-request-duration: true
+    deep-linking: true
+
+

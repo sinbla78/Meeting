@@ -45,7 +45,7 @@ public class UserController {
      * 회원 가입 처리
      * @param signUpRequest 회원 가입 요청
      */
-    @Operation(summary = "회원가입)", description = "signUp")
+    @Operation(summary = "회원가입", description = "signUp")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public void signUp(@RequestBody @Valid SignUpRequest signUpRequest) {
