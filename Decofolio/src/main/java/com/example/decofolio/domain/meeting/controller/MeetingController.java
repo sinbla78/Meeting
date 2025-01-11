@@ -6,6 +6,8 @@ import com.example.decofolio.domain.meeting.controller.dto.response.MeetingRespo
 import com.example.decofolio.domain.meeting.domain.Meeting;
 import com.example.decofolio.domain.meeting.service.MeetingService;
 import com.example.decofolio.domain.meeting.service.S3Service;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -74,13 +76,32 @@ public class MeetingController {
             @ApiResponse(responseCode = "201", description = "모임 생성 성공"),
             @ApiResponse(responseCode = "400", description = "잘못된 요청")
     })
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MeetingResponse> createMeeting(
-            @RequestPart("meetingRequest") @Parameter(description = "모임 정보(JSON 형식)", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) @Valid MeetingRequest meetingRequest,
-            @RequestPart(value = "file", required = false) @Parameter(description = "업로드할 파일") MultipartFile file) {
+            @RequestPart(value = "meetingRequest")
+            @Valid @Parameter(description = "모임 정보(JSON 형식)")
+            String meetingRequestJson,  // String으로 받습니다. JSON 형태로 받아야 함
+
+            @RequestPart(value = "file", required = false)
+            @Parameter(description = "업로드할 파일")
+            MultipartFile file) {
+
+        // meetingRequestJson을 MeetingRequest 객체로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        MeetingRequest meetingRequest;
+        try {
+            meetingRequest = objectMapper.readValue(meetingRequestJson, MeetingRequest.class);
+        } catch (JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // JSON 파싱 오류 처리
+        }
+
+        // 모임 생성 처리
         Meeting meeting = meetingService.execute(meetingRequest, file);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(MeetingResponse.fromEntity(meeting));
     }
+
+
 
     /**
      * 모임 참가 API
