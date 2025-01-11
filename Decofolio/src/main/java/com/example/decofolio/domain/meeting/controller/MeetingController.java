@@ -67,7 +67,7 @@ public class MeetingController {
     /**
      * 모임 생성 및 이미지 업로드
      *
-     * @param meetingRequest 모임 생성 요청 정보
+     * @param meetingRequestJson 모임 생성 요청 정보
      * @param file           모임 이미지 (optional)
      * @return 생성된 모임 정보
      */
@@ -80,13 +80,12 @@ public class MeetingController {
     public ResponseEntity<MeetingResponse> createMeeting(
             @RequestPart(value = "meetingRequest")
             @Valid @Parameter(description = "모임 정보(JSON 형식)")
-            String meetingRequestJson,  // String으로 받습니다. JSON 형태로 받아야 함
+            String meetingRequestJson,
 
             @RequestPart(value = "file", required = false)
             @Parameter(description = "업로드할 파일")
             MultipartFile file) {
 
-        // meetingRequestJson을 MeetingRequest 객체로 변환
         ObjectMapper objectMapper = new ObjectMapper();
         MeetingRequest meetingRequest;
         try {
@@ -95,7 +94,6 @@ public class MeetingController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();  // JSON 파싱 오류 처리
         }
 
-        // 모임 생성 처리
         Meeting meeting = meetingService.execute(meetingRequest, file);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(MeetingResponse.fromEntity(meeting));
