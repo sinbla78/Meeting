@@ -5,7 +5,6 @@ import com.example.decofolio.domain.comment.presentation.dto.request.CreateComme
 import com.example.decofolio.domain.comment.presentation.dto.response.CommentResponse;
 import com.example.decofolio.domain.comment.presentation.dto.response.CreateCommentResponse;
 import com.example.decofolio.domain.comment.service.CreateCommentService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,6 @@ public class CommentController {
      * @param request   댓글 작성 요청 데이터
      * @return          생성된 댓글에 대한 응답 데이터
      */
-    @ApiOperation(value = "회고 작성")
     @ResponseStatus(HttpStatus.CREATED) // HTTP 201 상태 반환
     @PostMapping("/{meetingId}") // /v1/comments/{meetingId}로 요청 시 매핑
     public CreateCommentResponse createComment(
@@ -48,7 +46,6 @@ public class CommentController {
      * @param meetingId 댓글을 조회할 모임의 ID
      * @return          댓글 리스트를 포함한 응답 객체
      */
-    @ApiOperation(value = "댓글 조회")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{meetingId}") // /v1/comments/{meetingId}로 요청 시 매핑
     public ResponseEntity<List<CommentResponse>> getComments(
