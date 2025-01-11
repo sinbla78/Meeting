@@ -16,7 +16,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,15 +44,23 @@ public class MeetingController {
      * @param title 검색할 모임 제목 (선택)
      * @return 검색된 모임 목록
      */
-    @Operation(summary = "모임 검색(제목 기반)", description = "receive meetings by title")
-    @ResponseStatus(HttpStatus.OK)
+    @Operation(
+            summary = "모임 검색(제목 기반)",
+            description = "제목을 기준으로 모임을 검색하고 페이지네이션을 적용한 결과를 조회합니다."
+    )
     @GetMapping("/search")
-    public Page<MeetingResponse> searchMeetings(
+    public ResponseEntity<Page<MeetingResponse>> searchMeetings(
             @RequestParam String title,
-            Pageable pageable
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "title,asc") String sort
     ) {
-        return meetingService.searchMeetingByTitle(title, pageable);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Order.asc(sort.split(",")[0])));
+        Page<MeetingResponse> meetings = meetingService.searchMeetingByTitle(title, pageable);
+
+        return ResponseEntity.ok(meetings); // Page<MeetingResponse>를 ResponseEntity로 감싸서 반환
     }
+
 
     /**
      * 모임 상세 조회 API
